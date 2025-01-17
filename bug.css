@@ -1,0 +1,15 @@
+The following CSS code results in unexpected behavior because of an uncommon specificity issue:
+
+```css
+.parent .child {
+  color: blue;
+}
+
+.child {
+  color: red;
+}
+```
+
+In this case, `color: red` will be applied to the `.child` element, despite the more specific selector `.parent .child`. This is because the specificity of `.parent .child` is higher than `.child` (1,1,0 vs 0,1,0). However, this is a common pitfall for developers as one can assume the specificity will be greater because it includes a parent element.
+
+This specificity calculation can lead to unexpected behavior in complex CSS layouts and is not very intuitive.
